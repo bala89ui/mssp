@@ -1,0 +1,10 @@
+.ocean-dashboard-search{
+  display: flex;
+  width: 50%;
+  margin: 0rem auto;
+}
+@media screen and (max-width: 768px) {
+  .ocean-dashboard-search{
+    width: 100%;
+  }
+}

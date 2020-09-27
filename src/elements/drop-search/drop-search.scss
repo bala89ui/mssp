@@ -1,0 +1,29 @@
+.drop-search{
+  display: flex;
+  height: 2.1875rem;
+  border: 1px solid #dfe1e5;
+  border-radius: 1.5rem;
+  box-shadow: none;
+  background: #fff;
+  width: 100%;
+  border-radius: 1.5rem;
+  margin: 0rem auto;
+  position: relative;
+  align-items: center;
+
+input {
+  width: 100%;
+  outline: 0rem;
+  border: 0rem;
+  border-radius: 1.5rem;
+  padding-left: 2.1875rem;
+}
+.search-icon{
+  left: 10px;
+   position: absolute;
+}
+.search-container:hover{
+  box-shadow: 0 1px 6px 0 rgba(32,33,36,0.28);
+  border-color: rgba(223,225,229,0);
+}
+}

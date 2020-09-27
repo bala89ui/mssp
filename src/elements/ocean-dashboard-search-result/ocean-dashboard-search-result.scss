@@ -1,0 +1,26 @@
+.ocean-dashboard-search-result{
+  height:60vh;
+  padding-top:2.5rem;
+
+  .widget-panel{
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .widget{
+    height:100%;
+    width: 50%;
+    padding:0.625rem;
+  }
+  
+}
+@media screen and (max-width: 768px) {
+  .ocean-dashboard-search-result{
+    .widget-panel{
+      flex-direction: column;
+    }
+    .widget {
+      width:100%;
+    }
+  }
+}

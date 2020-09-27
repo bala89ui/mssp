@@ -1,0 +1,23 @@
+.ocean-footer{
+  display: flex;
+  height: 1.875rem;
+  width: 100%;
+  background: #efefef;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  font-size: 0.75rem;
+  line-height: 0.75rem;
+  bottom: 0px;
+
+.img-wrap{
+  height: 1.75rem;
+  align-items: center;
+  display: flex;
+  margin-top: .5rem;
+  padding-left: 0.625rem;
+}
+img{
+  height:100%;
+}
+}

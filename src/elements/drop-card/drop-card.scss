@@ -1,0 +1,23 @@
+.drop-card{
+  background:#fff;
+  border: solid 1px #c1cad4;
+  border-radius: 0.1875rem;
+  height:100%;
+  position: relative;
+  padding:.624rem;
+  
+
+  .card-title{
+    position: absolute;
+    left: 0.9375rem;
+    top: -.5rem;
+    background: #fff;
+    display: block;
+    padding: 0px 0.3125rem;
+    font-size: 0.75rem;
+  }
+  .card-content{
+    overflow: auto;
+    height:100%;
+  }
+}

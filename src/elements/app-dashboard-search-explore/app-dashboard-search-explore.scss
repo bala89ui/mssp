@@ -1,0 +1,22 @@
+.app-dashboard-search-explore{
+  .app-dashboard-search {
+    min-height: 100vh;
+    display: flex;
+  }
+  .title{
+    text-align: center;
+    padding: 2.5rem 0rem 1.25rem 0rem;
+    margin: 0rem;
+  }
+  .dashboard-search{
+    display: flex;
+    width: 50%;
+    margin: 0rem auto;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .dashboard-search{
+    width: 100%;
+  }
+}
