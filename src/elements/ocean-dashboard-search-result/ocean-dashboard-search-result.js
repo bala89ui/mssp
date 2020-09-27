@@ -68,7 +68,7 @@ class OceanDashboardSearchResult extends React.Component {
       return <div>Loading...</div>;
     } else { 
       if(Utils.isEmpty(this.props.searchValue)){
-        let solutionNames = ["SSO","MFA","IAM"]
+        let solutionNames = ["SSO","MFA"]
         this._searchResult(solutionNames);
       }
     }
