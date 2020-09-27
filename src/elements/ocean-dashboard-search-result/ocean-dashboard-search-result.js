@@ -43,7 +43,6 @@ class OceanDashboardSearchResult extends React.Component {
     let items;
     categories.forEach((categorie) => {
       items = !Utils.isEmpty(categories) && Object.values(categorie)[0];
-      let solutionItems = [];
         (items || []).forEach((item) => {
           if (item && item.solutionName && solutionNames.includes(item.solutionName)) {
             if (item.solutionName) {

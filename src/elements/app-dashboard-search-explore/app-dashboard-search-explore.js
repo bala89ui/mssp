@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './app-dashboard-search-explore.scss';
 import OceanDashboardSearchResult from '../ocean-dashboard-search-result/ocean-dashboard-search-result';
 import DropSearch from '../drop-search/drop-search';

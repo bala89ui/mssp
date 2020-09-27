@@ -1,7 +1,6 @@
 import React from 'react';
 import "./ocean-header.scss"
 import DropIcon from '../drop-icon/drop-icon';
-import logo from '../../images/logo.png';
 
 function OceanHeader() {
   return (
