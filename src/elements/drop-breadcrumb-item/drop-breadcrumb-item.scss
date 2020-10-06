@@ -1,0 +1,30 @@
+.drop-breadcrumb-item{
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    &:last-child {
+        .breadcrumb-separator{
+            display: none;
+        }
+        span{
+            color: #000;
+            cursor: default;
+            &:hover{
+                color: #000; 
+            }
+        }
+      }
+      
+      .breadcrumb-separator{
+          padding: 0 5px;
+          font-size:20px;
+      }
+      span{
+        color: #0275d8;
+        cursor: pointer;
+
+        &:hover{
+            color: #01447e;
+        }
+      }
+}

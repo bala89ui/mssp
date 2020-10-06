@@ -2,6 +2,7 @@ import React from 'react';
 import './app-dashboard-search-explore.scss';
 import OceanDashboardSearchResult from '../ocean-dashboard-search-result/ocean-dashboard-search-result';
 import DropSearch from '../drop-search/drop-search';
+import Utils from '../../utils/utils';
 
 class AppDashboardSearchExplore extends React.Component {
   constructor(props) {
@@ -9,6 +10,11 @@ class AppDashboardSearchExplore extends React.Component {
     this.state={
       searchValue:""
     }
+   if(Utils.isValidPath(props,"location.state.text")){
+    this.state={
+      searchValue:props.location.state.text
+    }
+   }
 
   }
   
@@ -26,7 +32,7 @@ class AppDashboardSearchExplore extends React.Component {
   onSearchEvent(e){
     if(e.keyCode == 13){
       this.setState({
-          searchValue: e.target.value
+          searchValue:Utils.isEmpty(e.target.value)?"default":e.target.value
       })
     }
   }
