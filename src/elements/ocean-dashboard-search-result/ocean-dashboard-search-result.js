@@ -2,9 +2,11 @@ import React from 'react';
 import "./ocean-dashboard-search-result.scss"
 import DropCard from '../drop-card/drop-card';
 import DropItemViewer from '../drop-item-viewer/drop-item-viewer';
-import data from '../../api/demo.json';
+import demoJson from '../../api/demo.json';
 import Utils from '../../utils/utils';
 import config from '../../config/ocean-dashboard-search-result_config.json';
+
+const DEFAULT_SEARCH = "SSO MFA";
 
 class OceanDashboardSearchResult extends React.Component {
   constructor(props) {
@@ -14,28 +16,47 @@ class OceanDashboardSearchResult extends React.Component {
       data: {}
     };
   }
-  componentDidMount() {
-    if (data && config) {
-      this.setState({
+   componentWillMount() {
+    let solutionNames;
+    if (!Utils.isEmpty(config)) {
+       this.setState({
         isLoaded: true,
-        data: data,
         fields:config.grid.fields
       });
     }
+    if(Utils.isEmpty(this.props.searchValue)){
+      solutionNames = DEFAULT_SEARCH
+    }else{
+      solutionNames = this.props.searchValue;
+    }
+    this._searchResult(solutionNames);
+    
   }
-  componentWillUpdate(props){
+  
+  componentWillReceiveProps(props){
     let searchValue = props.searchValue;
     if(!Utils.isEmpty(searchValue)){
+      if(searchValue == "default"){
+        searchValue = DEFAULT_SEARCH
+      }
       searchValue = searchValue.toUpperCase();
-
       this._searchResult(searchValue);
     }
  }
  _searchResult(solutionNames){
-   this._searchResultBySolutionName(solutionNames);
+   /* need to modify from config*/
+   solutionNames = solutionNames.toUpperCase();
+   let solName="SSO MFA IFA";
+   let vendorName="OKTA";
+   if(solName.includes(solutionNames)){
+    this._searchResultByName(solutionNames,true);
+   }else if(vendorName.includes(solutionNames)){
+    this._searchResultByName(solutionNames,false);
+   }
+
  }
- _searchResultBySolutionName(solutionNames){
-  const {data } = this.state;
+  _searchResultByName(solutionNames,isSolutionName){
+  const data  = demoJson;
   let solutions=[];
   let solItems={};
   if (data && !Utils.isEmpty(data.categories)) {
@@ -44,39 +65,38 @@ class OceanDashboardSearchResult extends React.Component {
     categories.forEach((categorie) => {
       items = !Utils.isEmpty(categories) && Object.values(categorie)[0];
         (items || []).forEach((item) => {
-          if (item && item.solutionName && solutionNames.includes(item.solutionName)) {
-            if (item.solutionName) {
+          if (item && item.solutionName) {
+            if (item.solutionName && (solutionNames.includes(item.solutionName) || !isSolutionName)) {
               if(!Array.isArray(solItems[item.solutionName])){
                 solItems[item.solutionName]=[]
               }
               item["id"] = Utils.getUniqueId();
-              solItems[item.solutionName].push(item)
+              if(!isSolutionName && solutionNames.includes(item.vendorName.toUpperCase())){
+               solItems[item.solutionName].push(item)
+              }else if(isSolutionName){
+                solItems[item.solutionName].push(item)
+              }
             }
           }
         })
     });
     for (const property in solItems) {
-      solutions.push({title:property,value:solItems[property],id:Utils.getUniqueId()})
+      if(!Utils.isEmpty(solItems[property])){
+       solutions.push({title:property,value:solItems[property],id:Utils.getUniqueId()})
+      }
     }
-    this.state.solutions = solutions;
+    this.setState({
+      solutions: solutions
+    });
   }
   
  }
   render() {
-    const { isLoaded } = this.state;
-    if (!isLoaded) {
-      return <div>Loading...</div>;
-    } else { 
-      if(Utils.isEmpty(this.props.searchValue)){
-        let solutionNames = ["SSO","MFA"]
-        this._searchResult(solutionNames);
-      }
-    }
     return (
       <div className="ocean-dashboard-search-result">
         <div className="widget-panel">
         {Utils.isEmpty(this.state.solutions) ?
-          <div class="message"> No results found for the given criteria</div>:
+          <div className="message"> No results found for the given criteria</div>:
           this.state.solutions.map((item) => {
               return(<div className="widget" key={item.id} >
                 <DropCard title={item.title} content={<DropItemViewer data={item.value} fields={this.state.fields}></DropItemViewer>}>
